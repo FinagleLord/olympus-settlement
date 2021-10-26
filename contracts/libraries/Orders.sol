@@ -3,17 +3,16 @@
 pragma solidity =0.6.12;
 
 library Orders {
-    // keccak256("Order(address maker,address fromToken,address toToken,uint256 amountIn,uint256 amountOutMin,address recipient,uint256 deadline)")
-    bytes32 public constant ORDER_TYPEHASH = 0x7c228c78bd055996a44b5046fb56fa7c28c66bce92d9dc584f742b2cd76a140f;
+    // TODO convert to hash 
+    bytes32 public constant ORDER_TYPEHASH = keccak256("Order(address maker,address depositor,address principal,uint256 maxBondPrice,address recipient,uint256 deadline)");
 
     struct Order {
-        address maker;
-        address fromToken;
-        address toToken;
-        uint256 amountIn;
-        uint256 amountOutMin;
-        address recipient;
-        uint256 deadline;
+        address maker;              // msg.sender, creator of order.
+        address depositor;          // account that receives the bond.
+        address principal;          // principal used to buy bond.
+        uint256 maxBondPrice;       // max price user's willing to pay denominated in principal.
+        uint256 deadline;           // time when order can't be filled after.
+        // EIP-712
         uint8 v;
         bytes32 r;
         bytes32 s;
@@ -25,11 +24,9 @@ library Orders {
                 abi.encode(
                     ORDER_TYPEHASH,
                     order.maker,
-                    order.fromToken,
-                    order.toToken,
-                    order.amountIn,
-                    order.amountOutMin,
-                    order.recipient,
+                    order.depositor,
+                    order.principal,
+                    order.maxBondPrice,
                     order.deadline
                 )
             );
@@ -37,12 +34,9 @@ library Orders {
 
     function validate(Order memory order) internal {
         require(order.maker != address(0), "invalid-maker");
-        require(order.fromToken != address(0), "invalid-from-token");
-        require(order.toToken != address(0), "invalid-to-token");
-        require(order.fromToken != order.toToken, "duplicate-tokens");
-        require(order.amountIn > 0, "invalid-amount-in");
-        require(order.amountOutMin > 0, "invalid-amount-out-min");
-        require(order.recipient != address(0), "invalid-recipient");
+        require(order.depositor != address(0), "invalid-from-token");
+        require(order.principal != address(0), "invalid-to-token");
+        require(order.maxBondPrice > 0, "invalid-amount-in");
         require(order.deadline > 0, "invalid-deadline");
     }
 }
