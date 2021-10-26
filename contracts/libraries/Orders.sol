@@ -14,7 +14,6 @@ library Orders {
         uint BID;                // bond's unique identifier
         address FEO;             // frontend operator
         uint deadline;           // time when order can't be filled after.
-        address principal;
         uint8 v;
         bytes32 r;
         bytes32 s;
@@ -40,7 +39,7 @@ library Orders {
     function validate(Order memory order) internal {
         require(order.maker != address( 0 ), "invalid-maker");
         require(order.depositor != address( 0 ), "invalid-from-token");
-        require(order.principal != address( 0 ), "invalid-to-token");
+        // require(order.principal != address( 0 ), "invalid-to-token");
         require(order.maxBondPrice > 0, "invalid-amount-in");
         require(order.deadline > 0, "invalid-deadline");
     }
