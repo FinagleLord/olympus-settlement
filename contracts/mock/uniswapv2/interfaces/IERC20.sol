@@ -3,8 +3,8 @@
 pragma solidity >=0.5.0;
 
 interface IERC20Uniswap {
-    event Approval(address indexed owner, address indexed spender, uint256 value);
-    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint value);
+    event Transfer(address indexed from, address indexed to, uint value);
 
     function name() external view returns (string memory);
 
@@ -12,19 +12,19 @@ interface IERC20Uniswap {
 
     function decimals() external view returns (uint8);
 
-    function totalSupply() external view returns (uint256);
+    function totalSupply() external view returns (uint);
 
-    function balanceOf(address owner) external view returns (uint256);
+    function balanceOf(address owner) external view returns (uint);
 
-    function allowance(address owner, address spender) external view returns (uint256);
+    function allowance(address owner, address spender) external view returns (uint);
 
-    function approve(address spender, uint256 value) external returns (bool);
+    function approve(address spender, uint value) external returns (bool);
 
-    function transfer(address to, uint256 value) external returns (bool);
+    function transfer(address to, uint value) external returns (bool);
 
     function transferFrom(
         address from,
         address to,
-        uint256 value
+        uint value
     ) external returns (bool);
 }

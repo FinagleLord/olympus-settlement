@@ -6,18 +6,17 @@ pragma experimental ABIEncoderV2;
 import "../libraries/Orders.sol";
 
 interface ISettlement {
-    event OrderFilled(bytes32 indexed hash, uint256 amountIn, uint256 amountOut);
+    event OrderFilled(bytes32 indexed hash, uint amount, uint amountOut);
     event OrderCanceled(bytes32 indexed hash);
-    event FeeTransferred(bytes32 indexed hash, address indexed recipient, uint256 amount);
-    event FeeSplitTransferred(bytes32 indexed hash, address indexed recipient, uint256 amount);
+    event FeeTransferred(bytes32 indexed hash, address indexed recipient, uint amount);
+    event FeeSplitTransferred(bytes32 indexed hash, address indexed recipient, uint amount);
 
     struct FillOrderArgs {
         Orders.Order order;
-        uint256 amountToFillIn;
-        address[] path;
+        uint amountToFill;
     }
 
-    function fillOrder(FillOrderArgs calldata args) external returns (uint256 amountOut);
+    function fillOrder(FillOrderArgs calldata args) external returns (uint amountOut);
 
     function cancelOrder(bytes32 hash) external;
 }
