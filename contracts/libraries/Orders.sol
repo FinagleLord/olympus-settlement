@@ -4,7 +4,7 @@ pragma solidity =0.8.0;
 
 library Orders {
     // TODO convert to hash 
-    bytes32 public constant ORDER_TYPEHASH = keccak256("Order(address maker,address depositor,address principal,uint256 maxBondPrice,address recipient,uint256 deadline)");
+    bytes32 public constant ORDER_TYPEHASH = keccak256("Order(address maker,address depositor,uint256 amount,uint256 maxBondPrice,uint256 BID,address FEO,uint256 deadline)");
 
     struct Order {
         address maker;           // msg.sender, creator of order.
