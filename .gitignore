@@ -1,0 +1,12 @@
+.env
+yarn-error.log
+
+node_modules
+
+#Buidler files
+cache
+artifacts
+deployments/localhost*
+
+coverage.json
+coverage
