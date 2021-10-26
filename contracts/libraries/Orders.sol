@@ -28,7 +28,6 @@ library Orders {
                     order.maker,
                     order.depositor,
                     order.amount,
-                    order.principal,
                     order.maxBondPrice,
                     order.BID,
                     order.FEO,
