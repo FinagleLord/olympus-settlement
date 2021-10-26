@@ -4,7 +4,7 @@ This repository contains solidity contracts to enable **limit orders** for Olymp
 
 ## Overview
 
-Contracts in this repo help you submit a limit order with a lower price than what it is now. Later, when the price gets lower enough to meet the requirement of your order, it gets settled.
+Contracts in this repo help you submit a limit order with a lower price than what is available now. Later, when the price gets low enough to meet the requirements of your order, it gets settled.
 
 
 ## Contracts
