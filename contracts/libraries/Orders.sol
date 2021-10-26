@@ -14,7 +14,7 @@ library Orders {
         uint BID;                // bond's unique identifier
         address FEO;             // frontend operator
         uint deadline;           // time when order can't be filled after.
-
+        address principal;
         uint8 v;
         bytes32 r;
         bytes32 s;
