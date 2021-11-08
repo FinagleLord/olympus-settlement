@@ -9,7 +9,7 @@ library Bytes32Pagination {
         uint limit
     ) internal pure returns (bytes32[] memory result) {
         result = new bytes32[](limit);
-        for (uint i = 0; i < limit; i++) {
+        for (uint i; i < limit; i++) {
             if (page * limit + i >= hashes.length) {
                 result[i] = bytes32(0);
             } else {
