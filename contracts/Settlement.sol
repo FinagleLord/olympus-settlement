@@ -70,7 +70,7 @@ contract Settlement is ISettlement {
         uint received = _deposit( args );
 
         // make sure bond pays out the minimum amount of OHM
-        require( received => amountOutMin, "maxBondPrice not satisfied" );
+        require( received >= amountOutMin, "maxBondPrice not satisfied" );
 
         emit OrderFilled(hash, args.amountToFill, amountOut);
     }
