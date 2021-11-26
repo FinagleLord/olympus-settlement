@@ -11,19 +11,19 @@ async function main() {
   //
   // If this script is run directly using `node` you may want to call compile
   // manually to make sure everything is compiled
-  // await hre.run('compile');
+  const OrderBook = await hre.ethers.getContractFactory("OrderBook");
+  const orderBook = await OrderBook.deploy("Hello, Hardhat!");
 
-  // We get the contract to deploy
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  await orderBook.deployed();
+  console.log("Order book deployed to:", orderBook.address);
+  const Settlement = await hre.ethers.getContractFactory("Settlement");
+  const settlement = await Settlement.deploy("Hello, Hardhat!");
 
-  await greeter.deployed();
+  await settlement.deployed();
 
-  console.log("Greeter deployed to:", greeter.address);
+  console.log("Settlement deployed to:", settlement.address);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
